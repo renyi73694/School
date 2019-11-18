@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--导入配置文件
+    <properties resource="application.properties"/>-->
+
+    <classPathEntry location="C:\Users\zhang\.m2\repository\mysql\mysql-connector-java\5.1.40"/>
+    <!--    <classPathEntry location="./lib/mysql-connector-java-5.1.40.jar"/>-->
+
+    <context id="context" targetRuntime="MyBatis3">
+        <!--定义生成的java类的编码格式-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!--suppressAllComments 设置为true 则不再生成注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!-- 数据库的相关配置 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://192.168.199.209:3306/school"
+                userId="zhangzijun"
+                password="root"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- entity生成目录 -->
+        <javaModelGenerator targetPackage="com.example.School.entity"
+                            targetProject="./src/main/java">
+            <!-- trimString -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+
+        <!-- mapper生成目录 -->
+        <sqlMapGenerator targetPackage="com.example.School.mapper"
+                         targetProject="./src/main/resources">
+        </sqlMapGenerator>
+
+        <!--生成mapper-->
+        <!-- <javaClientGenerator type="ANNOTATEDMAPPER"
+                              targetPackage="com.com.ccic.aos.mapper"
+                              targetProject="./src/main/java">
+             <property name="enableSubPackages" value="true"/>
+             <property name="rootInterface" value="com.com.ccic.aos.mapper.CrudMapper"/>
+         </javaClientGenerator>-->
+
+        <table tableName="student" domainObjectName="Student"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <!-- 是否只生成POJO对象 -->
+            <property name="modelOnly" value="false"/>
+        </table>
+    </context>
+
+</generatorConfiguration>
